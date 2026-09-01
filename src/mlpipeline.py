@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedKFold, cross_val_score
@@ -9,7 +10,8 @@ from sklearn.metrics import accuracy_score, f1_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-df = pd.read_csv('C:/Users/s233183/OneDrive - Danmarks Tekniske Universitet/Desktop/Special-Course-Parkinson-Machine-Learning/GaitProject_NRT/results/fused_features.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+df = pd.read_csv(os.path.join(BASE_DIR, '..', 'results', 'fused_features.csv'))
 
 feature_cols = [col for col in df.columns if col not in ['Start', 'End', 'Subject', 'Muscle', 'Group']]
 X = df[feature_cols]

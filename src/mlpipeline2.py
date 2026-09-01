@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedKFold, cross_validate, GridSearchCV, cross_val_predict
@@ -13,8 +14,11 @@ from sklearn.metrics import (
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-df = pd.read_csv('C:/Users/s233183/OneDrive - Danmarks Tekniske Universitet/Desktop/Special-Course-Parkinson-Machine-Learning/GaitProject_NRT/results/fused_features.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+df = pd.read_csv(os.path.join(BASE_DIR, '..', 'results', 'fused_features.csv'))
+
 feature_cols = [c for c in df.columns if c not in ['Start', 'End', 'Subject', 'Muscle', 'Group']]
+
 X = df[feature_cols]
 y = df['Group'].map({'HC': 0, 'PD': 1})
 
