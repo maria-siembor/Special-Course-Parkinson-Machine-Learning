@@ -2,5 +2,4 @@ numpy
 pandas
 matplotlib
 scipy
-scipy.signal
 seaborn
